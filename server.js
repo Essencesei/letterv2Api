@@ -8,4 +8,6 @@ mongoose
   .then(() => console.log("Connected"))
   .catch((err) => console.log(err.message));
 
-app.listen((err) => (err ? console.log("Error") : console.log("Listening")));
+app.listen(3000, (err) =>
+  err ? console.log("Error") : console.log("Listening")
+);

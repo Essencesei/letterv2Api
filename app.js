@@ -145,7 +145,7 @@ app.get("/test/post/:id", validateToken, async (req, res) => {
     const data = await Posts.find({})
       .where("userData")
       .equals(req.decoded.userId)
-      .sort("-1");
+      .sort({ createdAt: -1 });
     res.status(200).json({
       status: "ok",
       data: data,
@@ -209,7 +209,10 @@ app.delete("/test/post", validateToken, async (req, res) => {
 
 app.get("/test/posts", validateToken, async (req, res) => {
   try {
-    const data = await Posts.find({}).where("isPublic").equals(true).sort("-1");
+    const data = await Posts.find({})
+      .where("isPublic")
+      .equals(true)
+      .sort({ createdAt: -1 });
     res.status(200).json({
       status: "ok",
       data: data,
